@@ -147,6 +147,27 @@ describe("application shell and state", () => {
     expect(shell.bottomNav.querySelectorAll("a")).toHaveLength(5);
   });
 
+  it("hydrates the account after the logged-in user becomes available", () => {
+    const shell = createShell({
+      route: { cid: "index", pid: "index" },
+      user: null
+    });
+
+    expect(shell.header.textContent).toContain("游客");
+    shell.setUser({
+      uid: 3,
+      name: "旧人",
+      avatar: "https://file.hu60.cn/avatar/3.jpg"
+    });
+
+    expect(shell.header.textContent).toContain("旧人");
+    expect(shell.header.textContent).toContain("个人中心");
+    expect(shell.header.textContent).not.toContain("游客");
+    expect(shell.header.querySelector(".hm-account img")?.src).toContain(
+      "/avatar/3.jpg"
+    );
+  });
+
   it("notifies subscribers only when page state changes", () => {
     const state = createPageState({ page: 1 });
     const listener = vi.fn();

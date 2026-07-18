@@ -41,7 +41,7 @@ function renderPost(post, topicId) {
     actions.push(
       actionLink(
         "编辑",
-        `bbs.edittopic.${topicId}.${post.floor}.html`
+        `bbs.edittopic.${topicId}.${post.floor}.jhtml`
       )
     );
   }
@@ -49,13 +49,13 @@ function renderPost(post, topicId) {
     actions.push(
       actionLink(
         "删除",
-        `bbs.deltopic.${topicId}.${post.floor}.html`,
+        `bbs.deltopic.${topicId}.${post.floor}.jhtml`,
         true
       )
     );
   }
   if (post.canSink) {
-    actions.push(actionLink("下沉", `bbs.sinktopic.${topicId}.html`));
+    actions.push(actionLink("下沉", `bbs.sinktopic.${topicId}.jhtml`));
   }
 
   return el("article", { class: "hm-post", id: String(post.floor) }, [
@@ -84,7 +84,7 @@ export function renderTopic(model) {
             "a",
             {
               class: "hm-button is-primary",
-              href: `bbs.newreply.${model.meta.id}.html`
+              href: `bbs.newreply.${model.meta.id}.jhtml`
             },
             "回复"
           )

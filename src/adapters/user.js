@@ -1,19 +1,19 @@
 import { number } from "./json.js";
+import { normalizeUserInfo } from "./user-info.js";
 
 const personalSettings = [
-  ["修改资料", "user.chinfo.html"],
-  ["修改头像", "user.avatar.html"],
-  ["修改用户名", "user.chname.html"],
-  ["修改密码", "user.chpwd.html"],
+  ["修改资料", "user.chinfo.jhtml"],
+  ["修改头像", "user.avatar.jhtml"],
+  ["修改用户名", "user.chname.jhtml"],
+  ["修改密码", "user.chpwd.jhtml"],
   ["收藏主题", "bbs.myfavorite.jhtml"],
   ["关注与屏蔽", "user.relationship.follow.jhtml"],
-  ["微信通知", "user.wechat.html"],
+  ["微信通知", "user.wechat.jhtml"],
   ["网页插件", "addin.webplug.jhtml"]
 ];
 
 export function normalizeUser(payload = {}) {
-  const source =
-    payload.uinfo || payload.userInfo || payload.user || payload._uinfo || {};
+  const source = normalizeUserInfo(payload);
   const relationship = payload.relationship || {};
   return {
     uid: number(source.uid ?? source.id),
@@ -21,14 +21,23 @@ export function normalizeUser(payload = {}) {
     avatar: String(source.avatar || ""),
     signature: String(source.signature || source.sign || ""),
     contact: String(source.contact || source.email || ""),
-    registeredAt: source.regTime || source.ctime || source.registeredAt || "",
+    registeredAt:
+      source.regTime ||
+      source.regtime ||
+      source.ctime ||
+      source.registeredAt ||
+      "",
     access: number(source.access),
     labels: Array.isArray(source.labels)
       ? source.labels
       : [source.title].filter(Boolean),
     relationship: {
-      followed: Boolean(relationship.followed ?? payload.followed),
-      blocked: Boolean(relationship.blocked ?? payload.blocked),
+      followed: Boolean(
+        relationship.followed ?? payload.followed ?? payload.isFollow
+      ),
+      blocked: Boolean(
+        relationship.blocked ?? payload.blocked ?? payload.isBlock
+      ),
       noDisturb: Boolean(relationship.noDisturb ?? payload.noDisturb)
     },
     isSelf: Boolean(payload.isSelf ?? payload.self),

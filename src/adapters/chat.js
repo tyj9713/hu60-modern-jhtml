@@ -1,9 +1,15 @@
 import { normalizePagination, number } from "./json.js";
+import { normalizeUserInfo } from "./user-info.js";
 
 export function normalizeChatRooms(payload = {}) {
   return {
     mode: "rooms",
-    rooms: (payload.roomList || payload.rooms || []).map((item) => ({
+    rooms: (
+      payload.roomList ||
+      payload.rooms ||
+      payload.chatRomList ||
+      []
+    ).map((item) => ({
       name: String(item.name || item.room || ""),
       count: number(item.count ?? item.online),
       description: String(item.description || "")
@@ -21,17 +27,20 @@ export function normalizeChatMessages(payload = {}) {
   return {
     mode: "messages",
     room,
-    messages: (payload.chatList || payload.messages || []).map((item) => ({
-      id: number(item.id ?? item.lid),
-      floor: number(item.lid ?? item.floor),
-      uid: number(item.uid),
-      author: item.uinfo || {},
-      avatar: String(item.uinfo?.avatar || item.avatar || ""),
-      contentHtml: String(item.contentHtml ?? item.content ?? ""),
-      createdAt: item.ctime || item.createdAt || "",
-      canDelete: Boolean(item.canDel ?? item.canDelete),
-      canViewSource: Boolean(item.canViewSource ?? item.canSource)
-    })),
+    messages: (payload.chatList || payload.messages || []).map((item) => {
+      const author = normalizeUserInfo(item);
+      return {
+        id: number(item.id ?? item.lid),
+        floor: number(item.lid ?? item.floor),
+        uid: number(item.uid),
+        author,
+        avatar: author.avatar,
+        contentHtml: String(item.contentHtml ?? item.content ?? ""),
+        createdAt: item.ctime || item.createdAt || "",
+        canDelete: Boolean(item.canDel ?? item.canDelete),
+        canViewSource: Boolean(item.canViewSource ?? item.canSource)
+      };
+    }),
     showBot: Boolean(number(payload.showBot)),
     pagination: normalizePagination(
       payload,

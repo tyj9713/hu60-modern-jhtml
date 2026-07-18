@@ -6,6 +6,7 @@ import { toBidUrl } from "../core/urls.js";
 import { confirmDialog } from "../ui/dialog.js";
 import { el } from "../ui/dom.js";
 import { bindAsyncFormSubmit } from "../ui/forms.js";
+import { renderAvatar } from "../ui/avatar.js";
 import { renderPagination } from "../ui/pagination.js";
 
 const tabs = [
@@ -37,24 +38,33 @@ function messageItem(item, chatMode = false) {
       }`
     },
     [
-      el("div", { class: "hm-message-meta" }, [
-        el(
-          "strong",
-          {},
-          item.direction === "outgoing"
-            ? `发给 ${item.peerName || "对方"}`
-            : item.peerName || "对方"
-        ),
-        item.unread ? el("span", {}, "未读") : null,
-        item.createdAt ? el("time", {}, item.createdAt) : null
-      ]),
-      chatMode
-        ? content
-        : el(
-            "a",
-            { class: "hm-message-link", href: `msg.index.view.${item.id}.jhtml` },
-            content
-          )
+      renderAvatar(
+        { name: item.peerName || "对方", avatar: item.peerAvatar || "" },
+        38
+      ),
+      el("div", { class: "hm-message-main" }, [
+        el("div", { class: "hm-message-meta" }, [
+          el(
+            "strong",
+            {},
+            item.direction === "outgoing"
+              ? `发给 ${item.peerName || "对方"}`
+              : item.peerName || "对方"
+          ),
+          item.unread ? el("span", {}, "未读") : null,
+          item.createdAt ? el("time", {}, item.createdAt) : null
+        ]),
+        chatMode
+          ? content
+          : el(
+              "a",
+              {
+                class: "hm-message-link",
+                href: `msg.index.view.${item.id}.jhtml`
+              },
+              content
+            )
+      ])
     ]
   );
 }
@@ -155,7 +165,9 @@ export async function requestClearInbox(
 
 export async function mount({ route, client, shell, services = {} }) {
   const payload = await client.json(
-    toBidUrl({ ...route, hash: "" }, "json")
+    toBidUrl({ ...route, hash: "" }, "json", {
+      _uinfo: "uid,name,avatar"
+    })
   );
   const mode = route.ext[0] || "inbox";
   const model =

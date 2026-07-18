@@ -42,6 +42,46 @@ describe("forum adapter", () => {
     expect(model.filters.onlyEssence).toBe(true);
   });
 
+  it("supports the fName, fIndex and childForum fields used by hu60", () => {
+    const model = normalizeForum({
+      fName: "网站开发",
+      fIndex: [
+        { id: 0, name: "论坛" },
+        { id: 215, name: "网站开发" }
+      ],
+      childForum: [
+        { id: 216, name: "前端开发", description: "浏览器技术" }
+      ],
+      topicList: [
+        {
+          topic_id: 10,
+          forum_id: 215,
+          title: "实际版块主题",
+          uid: 9,
+          _u_name: "开发者",
+          _u_avatar: "/avatar/9.jpg"
+        }
+      ]
+    });
+
+    expect(model).toMatchObject({
+      id: 215,
+      title: "网站开发",
+      breadcrumbs: [
+        { id: 0, name: "论坛" },
+        { id: 215, name: "网站开发" }
+      ]
+    });
+    expect(model.childForums[0]).toMatchObject({
+      id: 216,
+      name: "前端开发"
+    });
+    expect(model.topics[0]).toMatchObject({
+      author: { uid: 9, name: "开发者" },
+      avatar: "/avatar/9.jpg"
+    });
+  });
+
   it("renders forum cards, topic list and pagination", () => {
     const node = renderForum(
       normalizeForum({

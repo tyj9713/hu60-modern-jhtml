@@ -9,8 +9,8 @@
   background:
     linear-gradient(145deg, rgba(255, 255, 255, 0.5), transparent),
     var(--hm-brand-soft);
-  border: 1px solid rgba(82, 113, 200, 0.12);
-  border-radius: 35%;
+  border: 1px solid rgba(102, 115, 207, 0.12);
+  border-radius: 10px;
   font-size: calc(var(--hm-avatar-size) * 0.34);
   font-weight: 780;
 }
@@ -202,6 +202,7 @@
   color: #fff;
   background: var(--hm-brand);
   border-color: var(--hm-brand);
+  box-shadow: 0 8px 18px rgba(102, 115, 207, 0.2);
 }
 
 .hm-button.is-danger {

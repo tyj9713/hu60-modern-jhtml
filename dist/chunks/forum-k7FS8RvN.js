@@ -1,26 +1,26 @@
 import { t as e } from "./urls-Bq3RnfMf.js";
 import { t } from "./dom-Dhq3QSJF.js";
 import { t as n } from "./avatar-f6-FYNKw.js";
-import { n as r, r as i, t as a } from "./json-COYDUIwt.js";
+import { n as r, r as i, t as a } from "./json-CtYJArb0.js";
 import { t as o } from "./pagination-Bc186T6L.js";
 //#region src/adapters/forum.js
 function s(e = {}) {
-	let t = e.forum || e.forumInfo || {}, n = i(t.id ?? e.forumId);
+	let t = e.forum || e.forumInfo || {}, n = (e.parentForumList || e.breadcrumbs || e.fIndex || []).map((e) => ({
+		id: i(e.id),
+		name: String(e.name || "")
+	})), o = i(t.id ?? e.forumId ?? n[n.length - 1]?.id);
 	return {
-		id: n,
-		title: String(t.name || e.title || "论坛"),
+		id: o,
+		title: String(t.name || e.fName || e.title || "论坛"),
 		description: String(t.description || t.intro || ""),
-		breadcrumbs: (e.parentForumList || e.breadcrumbs || []).map((e) => ({
-			id: i(e.id),
-			name: String(e.name || "")
-		})),
-		childForums: (e.childForumList || e.childForums || []).map((e) => ({
+		breadcrumbs: n,
+		childForums: (e.childForumList || e.childForums || e.childForum || []).map((e) => ({
 			id: i(e.id),
 			name: String(e.name || ""),
 			description: String(e.description || e.intro || "")
 		})),
 		topics: (e.topicList || e.topics || []).map(r),
-		pagination: a(e, `bbs.forum.${n}.jhtml`),
+		pagination: a(e, `bbs.forum.${o}.jhtml`),
 		filters: { onlyEssence: !!i(e.onlyEssence) },
 		notice: String(e.notice || e.error || "")
 	};
@@ -52,7 +52,7 @@ function l(e) {
 			e.description ? t("p", {}, e.description) : null
 		]), t("a", {
 			class: "hm-button is-primary",
-			href: `bbs.newtopic.${e.id}.html`
+			href: `bbs.newtopic.${e.id}.jhtml`
 		}, "＋ 发帖")]),
 		e.childForums.length ? t("div", { class: "hm-forum-grid" }, e.childForums.map((e) => t("a", {
 			class: "hm-forum-card",

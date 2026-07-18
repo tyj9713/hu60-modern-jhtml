@@ -69,9 +69,15 @@ export function renderUserPage(model) {
 }
 
 export async function mount({ route, client, shell }) {
-  const model = normalizeUser(
-    await client.json(toBidUrl({ ...route, hash: "" }, "json"))
+  const payload = await client.json(
+    toBidUrl({ ...route, hash: "" }, "json", {
+      _uinfo: "uid,name,avatar,signature,contact"
+    })
   );
+  const model = normalizeUser({
+    ...payload,
+    isSelf: route.pid === "index" || payload.isSelf
+  });
   shell.setTitle(model.name);
   shell.setMain(renderUserPage(model));
   shell.setSidebar(el("div", { class: "hm-side-stack" }));

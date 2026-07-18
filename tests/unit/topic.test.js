@@ -50,6 +50,57 @@ describe("topic adapter", () => {
     expect(model.pagination.nextUrl).toContain("p=2");
   });
 
+  it("supports the live tMeta and tContents response contract", () => {
+    const model = normalizeTopic({
+      tMeta: {
+        title: "线上主题",
+        uid: 17189,
+        _u_name: "森森",
+        _u_avatar: "https://file.hu60.cn/avatar/17189.jpg",
+        read_count: 42,
+        locked: 0
+      },
+      tContents: [
+        {
+          id: 9001,
+          topic_id: 107441,
+          floor: 0,
+          uid: 17189,
+          _u_name: "森森",
+          _u_avatar: "https://file.hu60.cn/avatar/17189.jpg",
+          content: "<p>主题正文</p>",
+          canEdit: true
+        },
+        {
+          id: 9002,
+          topic_id: 107441,
+          floor: 1,
+          uid: 8,
+          _u_name: "回复者",
+          _u_avatar: "/avatar/8.jpg",
+          content: "<p>回复内容</p>"
+        }
+      ],
+      canReply: true,
+      currPage: 1,
+      maxPage: 1
+    });
+
+    expect(model.meta).toMatchObject({
+      id: 107441,
+      title: "线上主题",
+      readCount: 42
+    });
+    expect(model.posts).toHaveLength(2);
+    expect(model.posts[0]).toMatchObject({
+      author: { uid: 17189, name: "森森" },
+      avatar: "https://file.hu60.cn/avatar/17189.jpg",
+      contentHtml: "<p>主题正文</p>"
+    });
+    expect(model.canReply).toBe(true);
+    expect(model.pagination.nextUrl).toBe("");
+  });
+
   it("renders server content without executable scripts and shows actions", () => {
     const node = renderTopic(
       normalizeTopic({

@@ -21,6 +21,39 @@ it("renders a registered home route with the modern shell", async () => {
   expect(document.body.textContent).toContain("启动成功");
 });
 
+it("hydrates the shell from the logged-in user endpoint", async () => {
+  const client = {
+    json: vi.fn(async (url) =>
+      url.includes("user.index.json")
+        ? {
+            userInfo: {
+              uid: 3,
+              name: "登录用户",
+              avatar: "/avatar/3.jpg"
+            }
+          }
+        : { newTopicList: [] }
+    ),
+    html: vi.fn(async () => '<div id="friend_links"></div>')
+  };
+
+  await bootstrap({
+    url: "https://hu60.cn/q.php/index.index.jhtml",
+    client,
+    navigation: false
+  });
+
+  expect(client.json).toHaveBeenCalledWith(
+    expect.stringContaining("user.index.json")
+  );
+  expect(document.querySelector(".hm-account")?.textContent).toContain(
+    "登录用户"
+  );
+  expect(document.querySelector(".hm-account img")?.src).toContain(
+    "/avatar/3.jpg"
+  );
+});
+
 it("renders an ordinary-page fallback for unknown routes", async () => {
   await bootstrap({
     url: "https://hu60.cn/q.php/addin.unknown.7.jhtml",

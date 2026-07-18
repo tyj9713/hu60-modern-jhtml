@@ -41,7 +41,7 @@ export function renderForum(model) {
         "a",
         {
           class: "hm-button is-primary",
-          href: `bbs.newtopic.${model.id}.html`
+          href: `bbs.newtopic.${model.id}.jhtml`
         },
         "＋ 发帖"
       )

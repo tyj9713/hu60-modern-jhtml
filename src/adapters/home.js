@@ -1,7 +1,17 @@
 import { normalizePagination, normalizeTopicItem } from "./json.js";
+import { normalizeUserInfo } from "./user-info.js";
 import { toBidUrl } from "../core/urls.js";
 
 export function normalizeHome(payload = {}) {
+  const rawUser =
+    payload.userInfo || payload._uinfo || payload._myself?.user || null;
+  const rawLatestChat = payload._myself?.newChats?.[0] || null;
+  const latestChat = rawLatestChat
+    ? {
+        ...rawLatestChat,
+        ...normalizeUserInfo(rawLatestChat)
+      }
+    : null;
   return {
     topics: (payload.newTopicList || payload.topicList || []).map(
       normalizeTopicItem
@@ -9,8 +19,13 @@ export function normalizeHome(payload = {}) {
     pagination: normalizePagination(payload, "index.index.jhtml"),
     currentPage: Number(payload.currPage || 1),
     hasNextPage: Boolean(payload.hasNextPage),
-    latestChat: payload._myself?.newChats?.[0] || null,
-    user: payload.userInfo || payload._uinfo || payload._myself?.user || null,
+    latestChat,
+    user:
+      rawUser &&
+      rawUser.isLogin !== false &&
+      (rawUser.uid || rawUser.name)
+        ? normalizeUserInfo(rawUser)
+        : null,
     forums: payload.forumList || payload.forums || [],
     friendLinks: [],
     friendLinksError: ""

@@ -67,3 +67,37 @@ it("mounts the modern editor on content textareas", async () => {
   expect(mountEditor.mock.calls[0][0].textarea.name).toBe("content");
   expect(mountEditor.mock.calls[0][0].titleInput.name).toBe("title");
 });
+
+it("renders a forum picker for the root new-topic page without leaking scripts", async () => {
+  const shell = createShellStub();
+  const client = {
+    html: vi.fn(async () => `
+      <html><head><title>选择版块</title><style>.old{display:none}</style></head>
+      <body>
+        <nav><a href="bbs.newtopic.215.html">技术交流</a></nav>
+        <a href="/q.php/bbs.newtopic.170.html">站务处理</a>
+        <a href="bbs.newtopic.215.html">重复链接</a>
+        <script>window.__legacy_plugin = "不应显示";</script>
+      </body></html>
+    `)
+  };
+
+  await mount({
+    route: { cid: "bbs", pid: "newtopic", ext: [] },
+    client,
+    shell,
+    services: {}
+  });
+
+  expect(document.querySelector(".hm-forum-picker")).not.toBeNull();
+  expect(
+    document.querySelector('a[href="bbs.newtopic.215.jhtml"] strong')
+      ?.textContent
+  ).toBe("技术交流");
+  expect(
+    document.querySelector('a[href="bbs.newtopic.170.jhtml"] strong')
+      ?.textContent
+  ).toBe("站务处理");
+  expect(document.querySelectorAll(".hm-forum-picker a")).toHaveLength(2);
+  expect(document.body.textContent).not.toContain("不应显示");
+});

@@ -1,7 +1,7 @@
 import { t as e } from "./urls-Bq3RnfMf.js";
 import { t } from "./dom-Dhq3QSJF.js";
 import { n } from "./forms-Dv92BbyG.js";
-import { t as r } from "./html-form-CqrFi-b0.js";
+import { t as r } from "./html-form-AUGbAe7I.js";
 //#region src/adapters/tools.js
 function i(e = {}) {
 	let t = {};

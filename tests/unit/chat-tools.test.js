@@ -37,6 +37,26 @@ it("keeps chat avatar, room, floor and permissions", () => {
   expect(node.textContent).toContain("删除");
 });
 
+it("reads flat hu60 chat author and avatar fields", () => {
+  const model = normalizeChatMessages({
+    roomName: "公共聊天室",
+    chatList: [
+      {
+        lid: 10,
+        uid: 12,
+        _u_name: "聊天用户",
+        _u_avatar: "/avatar/12.jpg",
+        content: "真实消息"
+      }
+    ]
+  });
+
+  expect(model.messages[0]).toMatchObject({
+    author: { uid: 12, name: "聊天用户" },
+    avatar: "/avatar/12.jpg"
+  });
+});
+
 it("normalizes room list and keeps bot visibility", () => {
   expect(
     normalizeChatRooms({
@@ -53,6 +73,28 @@ it("normalizes room list and keeps bot visibility", () => {
       { name: "技术交流", count: 3 }
     ]
   });
+});
+
+it("supports the chatRomList key used by the live room index", () => {
+  expect(
+    normalizeChatRooms({
+      chatRomList: [
+        { name: "公共聊天室", count: 12 },
+        { room: "技术茶馆", online: 3 }
+      ]
+    }).rooms
+  ).toEqual([
+    {
+      name: "公共聊天室",
+      count: 12,
+      description: ""
+    },
+    {
+      name: "技术茶馆",
+      count: 3,
+      description: ""
+    }
+  ]);
 });
 
 it("extracts all coder actions and charsets", () => {

@@ -7,6 +7,7 @@ import { renderFallback } from "../pages/fallback.js";
 import { confirmDialog } from "../ui/dialog.js";
 import { toast } from "../ui/feedback.js";
 import { createShell } from "../ui/shell.js";
+import { normalizeUserInfo } from "../adapters/user-info.js";
 
 const pageModules = {
   home: () => import("../pages/home.js"),
@@ -105,6 +106,26 @@ export async function bootstrap(options = {}) {
   );
   let shell;
 
+  const hydrateCurrentUser = async (targetShell) => {
+    try {
+      const payload = await client.json(
+        "user.index.json?_uinfo=uid%2Cname%2Cavatar"
+      );
+      const rawUser =
+        payload?.userInfo ||
+        payload?.uinfo ||
+        payload?.user ||
+        payload?._uinfo ||
+        payload;
+      const currentUser = normalizeUserInfo(rawUser);
+      if ((currentUser.uid || currentUser.name) && shell === targetShell) {
+        targetShell.setUser?.(currentUser);
+      }
+    } catch {
+      // 匿名用户或旧接口拒绝访问时保持游客状态。
+    }
+  };
+
   const render = async (target) => {
     const url = target instanceof URL ? target : new URL(target, location.href);
     const route = detectRoute(url);
@@ -128,6 +149,7 @@ export async function bootstrap(options = {}) {
         definition,
         services: createServices(client)
       });
+      await hydrateCurrentUser(shell);
     } catch (error) {
       shell.setTitle("兼容模式");
       shell.setMain(

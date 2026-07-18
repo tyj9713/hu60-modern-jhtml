@@ -43,11 +43,23 @@ export function renderHome(model) {
         el("span", { class: "hm-kicker" }, "TECHNICAL COMMONS"),
         el("h1", {}, "最新讨论")
       ]),
-      el(
-        "a",
-        { class: "hm-button is-primary", href: "bbs.newtopic.0.html" },
-        "＋ 发布主题"
-      )
+      el("div", { class: "hm-page-actions" }, [
+        el(
+          "a",
+          { class: "hm-button is-ghost", href: "bbs.search.jhtml" },
+          "搜索"
+        ),
+        el(
+          "a",
+          { class: "hm-button is-primary", href: "bbs.newtopic.0.jhtml" },
+          "＋ 发帖"
+        )
+      ])
+    ]),
+    el("nav", { class: "hm-tabs", "aria-label": "主题筛选" }, [
+      el("a", { class: "is-active", href: "index.index.jhtml" }, "最新"),
+      el("a", { href: "bbs.forum.0.1.1.jhtml" }, "精华"),
+      el("a", { href: "bbs.search.jhtml" }, "搜索")
     ]),
     el(
       "div",
@@ -63,13 +75,30 @@ export function renderHome(model) {
     model.user
       ? sideCard(
           "我的社区",
-          el("div", { class: "hm-user-summary" }, [
-            renderAvatar(model.user, 48),
-            el("div", {}, [
-              el("strong", {}, model.user.name || "用户"),
-              el("a", { href: "user.index.jhtml" }, "查看个人中心")
+          [
+            el("div", { class: "hm-user-summary" }, [
+              renderAvatar(model.user, 48),
+              el("div", {}, [
+                el("strong", {}, model.user.name || "用户"),
+                el(
+                  "span",
+                  { class: "hm-user-note" },
+                  model.user.signature || "欢迎回到技术社区"
+                )
+              ])
+            ]),
+            el("div", { class: "hm-profile-actions hm-home-user-actions" }, [
+              el("a", { href: "user.index.jhtml" }, "个人中心"),
+              el("a", { href: "bbs.myfavorite.jhtml" }, "我的收藏"),
+              el("a", { href: "msg.index.inbox.all.jhtml" }, [
+                el("span", {}, "站内消息"),
+                Number(model.user.newMsg || 0)
+                  ? el("em", {}, model.user.newMsg)
+                  : null
+              ]),
+              el("a", { href: "bbs.newtopic.0.jhtml" }, "发布主题")
             ])
-          ]),
+          ],
           "is-account"
         )
       : sideCard(
@@ -91,18 +120,39 @@ export function renderHome(model) {
               )}.jhtml`
             },
             [
-              el("strong", {}, model.latestChat.room || "聊天室"),
-              el(
-                "p",
-                {},
-                `${model.latestChat.name || "用户"}：${
-                  model.latestChat.content || ""
-                }`
-              )
+              renderAvatar(model.latestChat, 34),
+              el("div", {}, [
+                el("strong", {}, model.latestChat.room || "聊天室"),
+                el(
+                  "p",
+                  {},
+                  `${model.latestChat.name || "用户"}：${
+                    model.latestChat.content || ""
+                  }`
+                )
+              ])
             ]
           )
         ])
       : null,
+    sideCard(
+      "社区导航",
+      el("div", { class: "hm-community-links" }, [
+        el("a", { href: "bbs.forum.0.jhtml" }, [
+          el("span", {}, "浏览全部版块"),
+          el("span", { "aria-hidden": "true" }, "›")
+        ]),
+        el("a", { href: "bbs.search.jhtml" }, [
+          el("span", {}, "搜索全部内容"),
+          el("span", { "aria-hidden": "true" }, "›")
+        ]),
+        el("a", { href: "addin.chat.jhtml" }, [
+          el("span", {}, "进入公共聊天室"),
+          el("span", { "aria-hidden": "true" }, "›")
+        ])
+      ]),
+      "is-community"
+    ),
     model.friendLinks?.length
       ? sideCard(
           "虎友网站",
@@ -131,4 +181,5 @@ export async function mount({ route, client, shell }) {
   shell.setTitle("首页");
   shell.setMain(view.main);
   shell.setSidebar(view.sidebar);
+  if (view.user) shell.setUser?.(view.user);
 }

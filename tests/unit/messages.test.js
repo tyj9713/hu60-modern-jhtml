@@ -42,6 +42,49 @@ it("maps incoming and outgoing conversation messages", () => {
   expect(model.peer).toMatchObject({ uid: 9, name: "对方" });
 });
 
+it("reads prefixed peer names and avatars added by hu60 JSON pages", () => {
+  const inbox = normalizeMessageList({
+    msgList: [
+      {
+        id: 3,
+        byuid: 9,
+        by_u_name: "发件人",
+        by_u_avatar: "/avatar/9.jpg",
+        content: "带头像的消息"
+      }
+    ]
+  });
+  const conversation = normalizeConversation(
+    {
+      msgList: [
+        {
+          id: 4,
+          byuid: 3,
+          touid: 9,
+          to_u_name: "对方",
+          to_u_avatar: "/avatar/9.jpg",
+          content: "发出的消息"
+        }
+      ]
+    },
+    3
+  );
+
+  expect(inbox.messages[0]).toMatchObject({
+    peerUid: 9,
+    peerName: "发件人",
+    peerAvatar: "/avatar/9.jpg"
+  });
+  expect(
+    renderMessages(inbox).querySelector(".hm-message img")?.src
+  ).toContain("/avatar/9.jpg");
+  expect(conversation.peer).toMatchObject({
+    uid: 9,
+    name: "对方",
+    avatar: "/avatar/9.jpg"
+  });
+});
+
 it("normalizes inbox filters and renders all message tabs", () => {
   const model = normalizeMessageList(
     {

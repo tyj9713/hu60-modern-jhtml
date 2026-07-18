@@ -1,7 +1,19 @@
+const fieldLabels = {
+  title: "标题",
+  content_title: "标题",
+  content: "正文",
+  name: "用户名",
+  password: "密码",
+  password2: "确认密码",
+  email: "邮箱",
+  token: "验证令牌"
+};
+
 function fieldLabel(field) {
   return (
     field.labels?.[0]?.textContent?.trim() ||
     field.getAttribute("placeholder") ||
+    fieldLabels[field.name] ||
     field.name
   );
 }

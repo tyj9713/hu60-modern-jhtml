@@ -38,6 +38,24 @@ it("preserves names, tokens, selected options and action", () => {
   });
 });
 
+it("uses Chinese labels for unlabeled post fields", () => {
+  const model = extractFormModel(`
+    <h1>发布主题</h1>
+    <form action="bbs.newtopic.215.html" method="post">
+      <input name="title">
+      <textarea name="content"></textarea>
+      <button type="submit">发布</button>
+    </form>
+  `);
+
+  expect(model.fields.find((field) => field.name === "title").label).toBe(
+    "标题"
+  );
+  expect(model.fields.find((field) => field.name === "content").label).toBe(
+    "正文"
+  );
+});
+
 it("renders the original field names and delegates submission", () => {
   const onSubmit = vi.fn((event) => event.preventDefault());
   const form = renderForm(

@@ -2,16 +2,16 @@ import { renderAvatar } from "./avatar.js";
 import { el } from "./dom.js";
 
 const primaryNavigation = [
-  ["首页", "index.index.jhtml", "index"],
-  ["版块", "bbs.forum.0.jhtml", "bbs"],
-  ["搜索", "bbs.search.jhtml", "search"],
-  ["聊天", "addin.chat.jhtml", "addin"]
+  ["社区", "index.index.jhtml", "index"],
+  ["精华", "bbs.forum.0.1.1.jhtml", "bbs"],
+  ["聊天室", "addin.chat.jhtml", "addin"],
+  ["工具", "tools.coder.jhtml", "tools"]
 ];
 
 const bottomNavigation = [
   ["首页", "index.index.jhtml", "⌂"],
   ["版块", "bbs.forum.0.jhtml", "▦"],
-  ["发布", "bbs.newtopic.0.html", "＋"],
+  ["发布", "bbs.newtopic.0.jhtml", "＋"],
   ["聊天", "addin.chat.jhtml", "◇"],
   ["我的", "user.index.jhtml", "○"]
 ];
@@ -37,7 +37,6 @@ function navigationLink([label, href, mark], route, compact = false) {
 }
 
 export function createShell({ route, user }) {
-  const account = user || { name: "游客", avatar: "" };
   const main = el("main", { class: "hm-main", id: "hm-main" });
   const sidebar = el("aside", {
     class: "hm-sidebar",
@@ -55,13 +54,48 @@ export function createShell({ route, user }) {
       el("a", { class: "hm-category-link", href }, label)
     )
   );
+  const accountLink = el("a", {
+    class: "hm-account hm-touch-target",
+    href: "user.index.jhtml"
+  });
+  const messageLink = el(
+    "a",
+    {
+      class: "hm-icon-link hm-touch-target",
+      href: "msg.index.inbox.no.jhtml",
+      "aria-label": "未读消息"
+    },
+    "◇"
+  );
+  const renderAccount = (nextUser) => {
+    const current = nextUser || { name: "游客", avatar: "" };
+    const notificationCount =
+      Number(current.newMsg || 0) + Number(current.newAtInfo || 0);
+    messageLink.replaceChildren(
+      document.createTextNode("◇"),
+      notificationCount
+        ? el(
+            "span",
+            { class: "hm-badge" },
+            notificationCount > 99 ? "99+" : notificationCount
+          )
+        : null
+    );
+    accountLink.replaceChildren(
+      renderAvatar(current, 34),
+      el("span", { class: "hm-account-copy" }, [
+        el("strong", {}, current.name || "游客"),
+        el("small", {}, nextUser ? "个人中心" : "登录 / 注册")
+      ])
+    );
+  };
+  renderAccount(user);
   const header = el("header", { class: "hm-header" }, [
     el("div", { class: "hm-header-inner" }, [
       el("a", { class: "hm-brand", href: "index.index.jhtml" }, [
-        el("span", { class: "hm-brand-mark", "aria-hidden": "true" }, "虎"),
+        el("span", { class: "hm-brand-mark", "aria-hidden": "true" }, "H"),
         el("span", { class: "hm-brand-copy" }, [
-          el("strong", {}, "hu60"),
-          el("small", {}, "技术社区")
+          el("strong", {}, "hu60")
         ])
       ]),
       el(
@@ -69,12 +103,18 @@ export function createShell({ route, user }) {
         { class: "hm-primary-nav", "aria-label": "主导航" },
         primaryNavigation.map((item) => navigationLink(item, route))
       ),
-      el("a", { class: "hm-account hm-touch-target", href: "user.index.jhtml" }, [
-        renderAvatar(account, 34),
-        el("span", { class: "hm-account-copy" }, [
-          el("strong", {}, account.name || "游客"),
-          el("small", {}, user ? "个人中心" : "登录 / 注册")
-        ])
+      el("div", { class: "hm-header-actions" }, [
+        el(
+          "a",
+          {
+            class: "hm-icon-link hm-touch-target",
+            href: "bbs.search.jhtml",
+            "aria-label": "搜索"
+          },
+          "⌕"
+        ),
+        messageLink,
+        accountLink
       ])
     ]),
     categoryBar
@@ -111,6 +151,9 @@ export function createShell({ route, user }) {
     },
     setSidebar(node) {
       sidebar.replaceChildren(node);
+    },
+    setUser(nextUser) {
+      renderAccount(nextUser);
     }
   };
 }

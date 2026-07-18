@@ -1,6 +1,6 @@
 import { t as e } from "./urls-Bq3RnfMf.js";
 import { t } from "./dom-Dhq3QSJF.js";
-import { r as n, t as r } from "./json-COYDUIwt.js";
+import { r as n, t as r } from "./json-CtYJArb0.js";
 import { t as i } from "./pagination-Bc186T6L.js";
 //#region src/pages/search.js
 function a(e = {}) {

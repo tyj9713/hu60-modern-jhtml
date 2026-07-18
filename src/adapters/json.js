@@ -1,3 +1,5 @@
+import { normalizeUserInfo } from "./user-info.js";
+
 export function number(value, fallback = 0) {
   const parsed = Number(value);
   return Number.isFinite(parsed) ? parsed : fallback;
@@ -29,12 +31,13 @@ export function normalizePagination(payload, base = "") {
 }
 
 export function normalizeTopicItem(item = {}) {
+  const author = normalizeUserInfo(item, item.author || {});
   return {
     id: number(item.topic_id ?? item.id),
     forumId: number(item.forum_id),
     title: String(item.title || ""),
-    author: item.uinfo || item.author || {},
-    avatar: item.uinfo?.avatar || item.avatar || "",
+    author,
+    avatar: author.avatar,
     replies: number(item.reply_count ?? item.replies),
     views: number(item.read_count ?? item.views),
     createdAt: item.ctime || item.createdAt || "",

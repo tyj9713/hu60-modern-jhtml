@@ -17,12 +17,15 @@ body {
     var(--hm-canvas);
   background-size: 24px 24px;
   font-family:
-    "MiSans VF",
     "HarmonyOS Sans SC",
+    "MiSans Normal",
+    "MiSans VF",
     "Microsoft YaHei UI",
+    "Microsoft YaHei",
+    system-ui,
     sans-serif;
   font-size: 15px;
-  line-height: 1.6;
+  line-height: 1.58;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
 }

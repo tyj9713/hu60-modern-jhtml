@@ -6,17 +6,28 @@ import {
 
 export function normalizeForum(payload = {}) {
   const forum = payload.forum || payload.forumInfo || {};
-  const forumId = number(forum.id ?? payload.forumId);
+  const breadcrumbs = (
+    payload.parentForumList ||
+    payload.breadcrumbs ||
+    payload.fIndex ||
+    []
+  ).map((item) => ({ id: number(item.id), name: String(item.name || "") }));
+  const forumId = number(
+    forum.id ??
+      payload.forumId ??
+      breadcrumbs[breadcrumbs.length - 1]?.id
+  );
   return {
     id: forumId,
-    title: String(forum.name || payload.title || "论坛"),
+    title: String(forum.name || payload.fName || payload.title || "论坛"),
     description: String(forum.description || forum.intro || ""),
-    breadcrumbs: (
-      payload.parentForumList ||
-      payload.breadcrumbs ||
+    breadcrumbs,
+    childForums: (
+      payload.childForumList ||
+      payload.childForums ||
+      payload.childForum ||
       []
-    ).map((item) => ({ id: number(item.id), name: String(item.name || "") })),
-    childForums: (payload.childForumList || payload.childForums || []).map(
+    ).map(
       (item) => ({
         id: number(item.id),
         name: String(item.name || ""),

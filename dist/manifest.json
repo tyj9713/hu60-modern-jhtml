@@ -31,13 +31,16 @@
       "_dom-Dhq3QSJF.js"
     ]
   },
-  "_html-form-CqrFi-b0.js": {
-    "file": "chunks/html-form-CqrFi-b0.js",
+  "_html-form-AUGbAe7I.js": {
+    "file": "chunks/html-form-AUGbAe7I.js",
     "name": "html-form"
   },
-  "_json-COYDUIwt.js": {
-    "file": "chunks/json-COYDUIwt.js",
-    "name": "json"
+  "_json-CtYJArb0.js": {
+    "file": "chunks/json-CtYJArb0.js",
+    "name": "json",
+    "imports": [
+      "_user-info-D3tSPs85.js"
+    ]
   },
   "_pagination-Bc186T6L.js": {
     "file": "chunks/pagination-Bc186T6L.js",
@@ -53,6 +56,10 @@
   "_urls-Bq3RnfMf.js": {
     "file": "chunks/urls-Bq3RnfMf.js",
     "name": "urls"
+  },
+  "_user-info-D3tSPs85.js": {
+    "file": "chunks/user-info-D3tSPs85.js",
+    "name": "user-info"
   },
   "node_modules/.pnpm/@astral-sh+ruff-wasm-web@0.15.22/node_modules/@astral-sh/ruff-wasm-web/ruff_wasm.js": {
     "file": "chunks/ruff_wasm-Dzf1pIzP.js",
@@ -141,7 +148,8 @@
       "_urls-Bq3RnfMf.js",
       "_dom-Dhq3QSJF.js",
       "_dialog-CuohRcFc.js",
-      "_avatar-f6-FYNKw.js"
+      "_avatar-f6-FYNKw.js",
+      "_user-info-D3tSPs85.js"
     ],
     "dynamicImports": [
       "src/pages/home.js",
@@ -248,7 +256,7 @@
     ]
   },
   "src/pages/chat.js": {
-    "file": "chunks/chat-BFPaVXsP.js",
+    "file": "chunks/chat-CIDMSgEK.js",
     "name": "chat",
     "src": "src/pages/chat.js",
     "isDynamicEntry": true,
@@ -256,14 +264,15 @@
       "_urls-Bq3RnfMf.js",
       "_dom-Dhq3QSJF.js",
       "_avatar-f6-FYNKw.js",
-      "_json-COYDUIwt.js",
+      "_user-info-D3tSPs85.js",
+      "_json-CtYJArb0.js",
       "_content-C2iR-miq.js",
       "_forms-Dv92BbyG.js",
       "_pagination-Bc186T6L.js"
     ]
   },
   "src/pages/forms.js": {
-    "file": "chunks/forms-BupczjfD.js",
+    "file": "chunks/forms-CIBOjai-.js",
     "name": "forms",
     "src": "src/pages/forms.js",
     "isDynamicEntry": true,
@@ -271,11 +280,11 @@
       "_urls-Bq3RnfMf.js",
       "_dom-Dhq3QSJF.js",
       "_forms-Dv92BbyG.js",
-      "_html-form-CqrFi-b0.js"
+      "_html-form-AUGbAe7I.js"
     ]
   },
   "src/pages/forum.js": {
-    "file": "chunks/forum-ByHBWkVM.js",
+    "file": "chunks/forum-k7FS8RvN.js",
     "name": "forum",
     "src": "src/pages/forum.js",
     "isDynamicEntry": true,
@@ -283,12 +292,12 @@
       "_urls-Bq3RnfMf.js",
       "_dom-Dhq3QSJF.js",
       "_avatar-f6-FYNKw.js",
-      "_json-COYDUIwt.js",
+      "_json-CtYJArb0.js",
       "_pagination-Bc186T6L.js"
     ]
   },
   "src/pages/home.js": {
-    "file": "chunks/home-D-POjCEb.js",
+    "file": "chunks/home-Cl_qQ1r0.js",
     "name": "home",
     "src": "src/pages/home.js",
     "isDynamicEntry": true,
@@ -296,12 +305,13 @@
       "_urls-Bq3RnfMf.js",
       "_dom-Dhq3QSJF.js",
       "_avatar-f6-FYNKw.js",
-      "_json-COYDUIwt.js",
+      "_user-info-D3tSPs85.js",
+      "_json-CtYJArb0.js",
       "_pagination-Bc186T6L.js"
     ]
   },
   "src/pages/messages.js": {
-    "file": "chunks/messages-AZ7l2MEA.js",
+    "file": "chunks/messages-Bs-a7VYm.js",
     "name": "messages",
     "src": "src/pages/messages.js",
     "isDynamicEntry": true,
@@ -309,25 +319,27 @@
       "_urls-Bq3RnfMf.js",
       "_dom-Dhq3QSJF.js",
       "_dialog-CuohRcFc.js",
-      "_json-COYDUIwt.js",
+      "_avatar-f6-FYNKw.js",
+      "_user-info-D3tSPs85.js",
+      "_json-CtYJArb0.js",
       "_forms-Dv92BbyG.js",
       "_pagination-Bc186T6L.js"
     ]
   },
   "src/pages/search.js": {
-    "file": "chunks/search-D2qH1wMd.js",
+    "file": "chunks/search-R4E2WYIY.js",
     "name": "search",
     "src": "src/pages/search.js",
     "isDynamicEntry": true,
     "imports": [
       "_urls-Bq3RnfMf.js",
       "_dom-Dhq3QSJF.js",
-      "_json-COYDUIwt.js",
+      "_json-CtYJArb0.js",
       "_pagination-Bc186T6L.js"
     ]
   },
   "src/pages/tools.js": {
-    "file": "chunks/tools-C-x3B5cz.js",
+    "file": "chunks/tools-zsgY8R_k.js",
     "name": "tools",
     "src": "src/pages/tools.js",
     "isDynamicEntry": true,
@@ -335,11 +347,11 @@
       "_urls-Bq3RnfMf.js",
       "_dom-Dhq3QSJF.js",
       "_forms-Dv92BbyG.js",
-      "_html-form-CqrFi-b0.js"
+      "_html-form-AUGbAe7I.js"
     ]
   },
   "src/pages/topic.js": {
-    "file": "chunks/topic-DL6b1wue.js",
+    "file": "chunks/topic-aJ_oHwan.js",
     "name": "topic",
     "src": "src/pages/topic.js",
     "isDynamicEntry": true,
@@ -347,13 +359,14 @@
       "_urls-Bq3RnfMf.js",
       "_dom-Dhq3QSJF.js",
       "_avatar-f6-FYNKw.js",
-      "_json-COYDUIwt.js",
+      "_user-info-D3tSPs85.js",
+      "_json-CtYJArb0.js",
       "_content-C2iR-miq.js",
       "_pagination-Bc186T6L.js"
     ]
   },
   "src/pages/user.js": {
-    "file": "chunks/user-DRYrpYmi.js",
+    "file": "chunks/user-D-dlDs1M.js",
     "name": "user",
     "src": "src/pages/user.js",
     "isDynamicEntry": true,
@@ -361,7 +374,8 @@
       "_urls-Bq3RnfMf.js",
       "_dom-Dhq3QSJF.js",
       "_avatar-f6-FYNKw.js",
-      "_json-COYDUIwt.js"
+      "_user-info-D3tSPs85.js",
+      "_json-CtYJArb0.js"
     ]
   },
   "src/pages/webplug.js": {

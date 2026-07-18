@@ -12,6 +12,9 @@ import { createShell } from "../../src/ui/shell.js";
 afterEach(() => {
   vi.useRealTimers();
   document.body.replaceChildren();
+  document.head
+    .querySelectorAll("[data-hu60-test]")
+    .forEach((node) => node.remove());
   document.title = "";
 });
 
@@ -108,6 +111,22 @@ describe("shared UI", () => {
 });
 
 describe("application shell and state", () => {
+  it("preserves a body-hosted stylesheet when replacing JHTML content", () => {
+    const stylesheet = document.createElement("link");
+    stylesheet.rel = "stylesheet";
+    stylesheet.href = "https://cdn.example.test/theme.min.css";
+    stylesheet.dataset.hu60Test = "stylesheet";
+    document.body.append(stylesheet);
+
+    createShell({
+      route: { cid: "index", pid: "index" },
+      user: null
+    });
+
+    expect(stylesheet.isConnected).toBe(true);
+    expect(stylesheet.parentElement).toBe(document.head);
+  });
+
   it("creates the editorial shell and updates content regions", () => {
     const shell = createShell({
       route: { cid: "bbs", pid: "topic" },

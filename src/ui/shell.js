@@ -91,6 +91,9 @@ export function createShell({ route, user }) {
     bottomNav
   ]);
 
+  document.head.append(
+    ...document.body.querySelectorAll('link[rel="stylesheet"]')
+  );
   document.body.replaceChildren(root);
 
   return {

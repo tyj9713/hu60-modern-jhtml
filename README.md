@@ -7,11 +7,11 @@
 把以下两行保存为站点的 JHTML 自定义内容：
 
 ```html
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/tyj9713/hu60-modern-jhtml@v1.0.0/dist/theme.min.css">
-<script type="module" src="https://cdn.jsdelivr.net/gh/tyj9713/hu60-modern-jhtml@v1.0.0/dist/app.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/tyj9713/hu60-modern-jhtml@v1.0.1/dist/theme.min.css">
+<script type="module" src="https://cdn.jsdelivr.net/gh/tyj9713/hu60-modern-jhtml@v1.0.1/dist/app.min.js"></script>
 ```
 
-发布地址固定到 Git 标签 `v1.0.0`，避免 CDN 上游更新导致已部署站点在未验证的情况下变化。回滚时清空这两行，或改回上一个已验证版本；普通 `.html` 页面始终保留为兼容入口。
+发布地址固定到 Git 标签 `v1.0.1`，避免 CDN 上游更新导致已部署站点在未验证的情况下变化。回滚时清空这两行，或改回上一个已验证版本；普通 `.html` 页面始终保留为兼容入口。
 
 ## 覆盖范围
 
@@ -22,7 +22,7 @@
 - 收件箱、发件箱、@消息、单条消息、私聊
 - 公共聊天室、网页插件、浏览器 UA、编码解码器
 
-管理后台不会被接管，相关链接继续使用普通 `.html`。1.0.0 只提供浅色主题，不包含深色模式。
+管理后台不会被接管，相关链接继续使用普通 `.html`。1.0.x 只提供浅色主题，不包含深色模式。
 
 ## 编辑器
 

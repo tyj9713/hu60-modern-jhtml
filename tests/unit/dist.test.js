@@ -9,10 +9,11 @@ it("ships an exact-version loader without floating URLs", () => {
   );
 
   expect(loader).toContain(
-    "hu60-modern-jhtml@1.0.0/dist/theme.min.css"
+    "cdn.jsdelivr.net/gh/tyj9713/hu60-modern-jhtml@v1.0.1/dist/theme.min.css"
   );
   expect(loader).toContain(
-    "hu60-modern-jhtml@1.0.0/dist/app.min.js"
+    "cdn.jsdelivr.net/gh/tyj9713/hu60-modern-jhtml@v1.0.1/dist/app.min.js"
   );
   expect(loader).not.toContain("@latest");
+  expect(loader).not.toContain("@main");
 });

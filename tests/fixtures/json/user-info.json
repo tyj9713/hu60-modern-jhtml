@@ -1,0 +1,14 @@
+{
+  "uinfo": {
+    "uid": 3,
+    "name": "工程虎",
+    "avatar": "/avatar/3.jpg",
+    "signature": "保持好奇",
+    "contact": "mail@example.com"
+  },
+  "relationship": {
+    "followed": true,
+    "blocked": false
+  },
+  "isSelf": false
+}

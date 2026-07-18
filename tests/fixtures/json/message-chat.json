@@ -1,0 +1,27 @@
+{
+  "msgList": [
+    {
+      "id": 1,
+      "byuid": 9,
+      "touid": 3,
+      "byUinfo": {
+        "name": "对方"
+      },
+      "content": "你好",
+      "isread": 0
+    },
+    {
+      "id": 2,
+      "byuid": 3,
+      "touid": 9,
+      "toUinfo": {
+        "name": "对方"
+      },
+      "content": "收到",
+      "isread": 1
+    }
+  ],
+  "_myself": {
+    "uid": 3
+  }
+}

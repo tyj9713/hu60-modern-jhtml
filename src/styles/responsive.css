@@ -1,0 +1,114 @@
+.hm-main,
+.hm-sidebar,
+.hm-panel,
+.hm-topic-copy,
+.hm-post-content,
+.hm-message-content,
+.hm-chat-content,
+.hm-form-field,
+.hm-form-control {
+  min-width: 0;
+}
+
+.hm-post-content img,
+.hm-message-content img,
+.hm-chat-content img,
+.hm-editor-preview img,
+video,
+iframe {
+  max-width: 100%;
+}
+
+.hm-post-content table,
+.hm-message-content table,
+.hm-chat-content table,
+.hm-editor-preview table,
+.hm-header-table,
+pre {
+  max-width: 100%;
+  overflow-x: auto;
+}
+
+.hm-post-content,
+.hm-message-content,
+.hm-chat-content,
+.hm-editor-preview,
+.hm-topic-title,
+.hm-page-head h1 {
+  overflow-wrap: anywhere;
+}
+
+@media (max-width: 980px) {
+  .hm-header-inner {
+    grid-template-columns: auto minmax(0, 1fr) auto;
+    gap: 14px;
+  }
+
+  .hm-layout {
+    grid-template-columns: minmax(0, 1fr) minmax(220px, 250px);
+  }
+
+  .hm-primary-nav {
+    justify-content: flex-start;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+
+  .hm-sidebar {
+    position: static;
+  }
+
+  .hm-editor {
+    grid-template-columns: 1fr;
+  }
+
+  .hm-editor-pane {
+    border-right: 0;
+  }
+
+  .hm-editor-preview {
+    min-height: 220px;
+    border-top: 1px solid var(--hm-line);
+  }
+}
+
+@media (max-width: 720px) {
+  .hm-layout,
+  .hm-panel,
+  .hm-editor,
+  .hm-form,
+  .hm-post,
+  .hm-chat-message {
+    max-width: 100%;
+  }
+
+  .hm-button,
+  .hm-page-link,
+  .hm-tabs a,
+  .hm-form button,
+  .hm-editor button,
+  .hm-bottom-nav a {
+    min-height: 44px;
+  }
+
+  .hm-header-table > div {
+    grid-template-columns: 1fr;
+    gap: 3px;
+  }
+
+  .hm-form-actions {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .hm-form-actions .hm-button,
+  .hm-form-actions button {
+    width: 100%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html:focus-within {
+    scroll-behavior: auto;
+  }
+}

@@ -1,0 +1,24 @@
+:root {
+  color-scheme: light;
+  --hm-canvas: #e9edf2;
+  --hm-canvas-dot: rgba(69, 81, 102, 0.075);
+  --hm-surface: #f7f8f8;
+  --hm-surface-soft: #eef1f4;
+  --hm-line: #d9e0e7;
+  --hm-line-strong: #c5ced8;
+  --hm-text: #29313b;
+  --hm-text-soft: #74808d;
+  --hm-text-faint: #9aa3ad;
+  --hm-brand: #5271c8;
+  --hm-brand-strong: #3f5cab;
+  --hm-brand-soft: #dfe6f7;
+  --hm-mint: #317c73;
+  --hm-mint-soft: #dcece8;
+  --hm-danger: #b85b65;
+  --hm-danger-soft: #f3e0e3;
+  --hm-radius-sm: 8px;
+  --hm-radius-md: 12px;
+  --hm-radius-lg: 18px;
+  --hm-shadow-sm: 0 8px 24px rgba(40, 52, 70, 0.06);
+  --hm-shadow-lg: 0 24px 70px rgba(40, 52, 70, 0.12);
+}

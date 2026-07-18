@@ -1,0 +1,17 @@
+{
+  "roomName": "公共聊天室",
+  "chatList": [
+    {
+      "lid": 9,
+      "uid": 3,
+      "uinfo": {
+        "name": "旧人",
+        "avatar": "/a.jpg"
+      },
+      "content": "你好",
+      "canDel": true
+    }
+  ],
+  "currPage": 1,
+  "maxPage": 3
+}

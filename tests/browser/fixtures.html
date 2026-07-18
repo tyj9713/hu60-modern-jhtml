@@ -1,0 +1,406 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>hu60 modern browser fixtures</title>
+    <script type="module">
+      import "../../src/styles/tokens.css";
+      import "../../src/styles/base.css";
+      import "../../src/styles/shell.css";
+      import "../../src/styles/components.css";
+      import "../../src/styles/pages.css";
+      import "../../src/styles/editor.css";
+      import "../../src/styles/responsive.css";
+
+      import { normalizeChatMessages } from "../../src/adapters/chat.js";
+      import { normalizeForum } from "../../src/adapters/forum.js";
+      import { normalizeHome } from "../../src/adapters/home.js";
+      import { normalizeMessageList } from "../../src/adapters/message.js";
+      import { normalizeTopic } from "../../src/adapters/topic.js";
+      import { normalizeUa } from "../../src/adapters/tools.js";
+      import { normalizeUser } from "../../src/adapters/user.js";
+      import { createNavigation } from "../../src/core/navigation.js";
+      import { mountEditor } from "../../src/editor/controller.js";
+      import { renderChat } from "../../src/pages/chat.js";
+      import { renderForum } from "../../src/pages/forum.js";
+      import { renderHome } from "../../src/pages/home.js";
+      import { renderMessages } from "../../src/pages/messages.js";
+      import { renderTopic } from "../../src/pages/topic.js";
+      import { renderUa } from "../../src/pages/tools.js";
+      import { renderUserPage } from "../../src/pages/user.js";
+      import { confirmDialog } from "../../src/ui/dialog.js";
+      import { el } from "../../src/ui/dom.js";
+      import { toast } from "../../src/ui/feedback.js";
+      import { bindAsyncFormSubmit } from "../../src/ui/forms.js";
+      import { createShell } from "../../src/ui/shell.js";
+
+      Object.defineProperty(navigator, "clipboard", {
+        configurable: true,
+        value: {
+          async writeText(value) {
+            window.__fixtureCopiedText = value;
+          }
+        }
+      });
+
+      const topicItems = [
+        {
+          id: 101,
+          title: "如何为旧论坛设计稳定的渐进增强层",
+          uinfo: { uid: 7, name: "无名工程师" },
+          reply_count: 18,
+          read_count: 421,
+          forum_name: "技术交流"
+        },
+        {
+          id: 102,
+          title: "分享一个不依赖框架的响应式排版实践",
+          uinfo: { uid: 8, name: "前端旅人" },
+          reply_count: 6,
+          read_count: 128,
+          essence: 1
+        }
+      ];
+
+      const shell = createShell({
+        route: { cid: "index", pid: "index", ext: [] },
+        user: { uid: 7, name: "测试用户", avatar: "" }
+      });
+      const fixtureName =
+        new URLSearchParams(location.search).get("page") || "home";
+
+      function addFixtureSidebar() {
+        shell.sidebar.append(
+          el("section", { class: "hm-side-card" }, [
+            el("h2", {}, "测试入口"),
+            el("div", { class: "hm-side-card-body" }, [
+              el(
+                "a",
+                { id: "admin-link", href: "admin.index.html" },
+                "管理后台"
+              )
+            ])
+          ])
+        );
+      }
+
+      function showHome() {
+        const model = normalizeHome({
+          newTopicList: topicItems,
+          currPage: 1,
+          maxPage: 3,
+          hasNextPage: true,
+          userInfo: { uid: 7, name: "测试用户", avatar: "" },
+          _myself: {
+            newChats: [
+              {
+                room: "技术茶馆",
+                name: "社区机器人",
+                content: "欢迎回来，今天有 12 条新讨论。"
+              }
+            ]
+          }
+        });
+        model.friendLinks = [
+          { name: "虎友甲", href: "https://example.com/a", avatar: "" },
+          { name: "虎友乙", href: "https://example.com/b", avatar: "" }
+        ];
+        const view = renderHome(model);
+        shell.setMain(view.main);
+        shell.setSidebar(view.sidebar);
+      }
+
+      function showForum() {
+        shell.setMain(
+          renderForum(
+            normalizeForum({
+              forum: {
+                id: 170,
+                name: "技术交流",
+                description: "讨论开发、运维与互联网技术。"
+              },
+              topicList: topicItems,
+              childForumList: [
+                { id: 171, name: "Web 开发", description: "浏览器与服务端" }
+              ],
+              currPage: 1,
+              maxPage: 3,
+              hasNextPage: true
+            })
+          )
+        );
+      }
+
+      function showTopic() {
+        shell.setMain(
+          renderTopic(
+            normalizeTopic({
+              topic: {
+                id: 101,
+                title: "渐进增强层的设计与兼容策略",
+                read_count: 421
+              },
+              canReply: true,
+              currPage: 1,
+              maxPage: 2,
+              hasNextPage: true,
+              contentList: [
+                {
+                  floor: 0,
+                  uinfo: { uid: 7, name: "无名工程师" },
+                  ctime: "2026-07-18 10:00",
+                  content:
+                    '<p>旧接口也能承载现代体验 <img src="/img/face/e59b9ee5a4b4e79c8b.gif?1655377649" width="64" height="64" alt="表情"></p><pre><code class="language-js">const stable = true;</code></pre>',
+                  canEdit: true
+                },
+                {
+                  floor: 1,
+                  uinfo: { uid: 8, name: "前端旅人" },
+                  ctime: "2026-07-18 10:12",
+                  content: "<blockquote>关键是让失败可以安全回退。</blockquote>"
+                }
+              ]
+            })
+          )
+        );
+      }
+
+      function showUser() {
+        shell.setMain(
+          renderUserPage(
+            normalizeUser({
+              uinfo: {
+                uid: 7,
+                name: "测试用户",
+                signature: "持续学习，认真分享。",
+                contact: "未公开",
+                regTime: "2020-06-01"
+              },
+              isSelf: true,
+              relationship: { followed: true }
+            })
+          )
+        );
+      }
+
+      function showMessages() {
+        shell.setMain(
+          renderMessages(
+            normalizeMessageList({
+              msgList: [
+                {
+                  id: 501,
+                  byuid: 8,
+                  byUinfo: { name: "前端旅人" },
+                  content: "<p>关于你昨天发的兼容方案，我补了一份测试。</p>",
+                  ctime: "2026-07-18 09:18",
+                  isread: 0
+                }
+              ],
+              currPage: 1,
+              maxPage: 2,
+              hasNextPage: true
+            })
+          )
+        );
+      }
+
+      function showChat() {
+        shell.setMain(
+          renderChat(
+            normalizeChatMessages({
+              roomName: "技术茶馆",
+              chatList: [
+                {
+                  id: 601,
+                  lid: 18,
+                  uid: 8,
+                  uinfo: { name: "前端旅人" },
+                  content:
+                    "<p>平板端建议保留侧栏，手机端再切成单列。</p>",
+                  ctime: "2026-07-18 11:08",
+                  canViewSource: true
+                }
+              ],
+              currPage: 1,
+              maxPage: 1
+            })
+          )
+        );
+      }
+
+      function showEditor() {
+        const form = el("form", { class: "hm-panel hm-form" });
+        const textarea = el("textarea", {
+          class: "hm-form-control",
+          name: "content",
+          "aria-label": "正文"
+        });
+        form.append(
+          el("header", { class: "hm-page-head" }, [
+            el("div", {}, [
+              el("span", { class: "hm-kicker" }, "COMPOSE"),
+              el("h1", {}, "发布主题")
+            ])
+          ]),
+          textarea,
+          el("div", { class: "hm-form-actions" }, [
+            el(
+              "button",
+              { class: "hm-button is-primary", type: "submit" },
+              "发布"
+            )
+          ])
+        );
+        shell.setMain(form);
+        window.__fixtureFormatLoads = 0;
+        const controller = mountEditor({
+          form,
+          textarea,
+          routeKey: "bbs.newtopic",
+          targetId: "170",
+          previewUrl: "bbs.newtopic.170.json",
+          services: {
+            storage: localStorage,
+            async upload(file) {
+              return {
+                url: `https://img.example/${encodeURIComponent(file.name)}`,
+                name: file.name,
+                size: file.size,
+                content: `[img]https://img.example/${file.name}[/img]`
+              };
+            },
+            async formatCode(...args) {
+              window.__fixtureFormatLoads += 1;
+              const module = await import("../../src/formatters/registry.js");
+              return module.formatCode(...args);
+            },
+            client: {
+              async request() {
+                return new Response(
+                  JSON.stringify({ preview: "<p>服务器预览内容</p>" }),
+                  {
+                    status: 200,
+                    headers: { "content-type": "application/json" }
+                  }
+                );
+              }
+            },
+            toast
+          }
+        });
+        bindAsyncFormSubmit(form, {
+          client: {
+            async request() {
+              return new Response("暂时不可用", { status: 503 });
+            }
+          },
+          controller,
+          toast
+        });
+        window.__fixtureEditor = controller;
+      }
+
+      function showTools() {
+        shell.setMain(
+          renderUa(
+            normalizeUa({
+              ip: "203.0.113.7",
+              location: "测试网络",
+              proxy: "",
+              headers: {
+                "user-agent":
+                  "Mozilla/5.0 fixture with a deliberately long but wrappable value",
+                accept: "text/html"
+              }
+            })
+          )
+        );
+      }
+
+      function showInteractions() {
+        const trigger = el(
+          "button",
+          {
+            class: "hm-button",
+            type: "button",
+            onclick: () =>
+              toast({
+                kind: "success",
+                title: "操作成功",
+                message: "这是一条非阻塞提示"
+              })
+          },
+          "显示提示"
+        );
+        const dialogTrigger = el(
+          "button",
+          {
+            class: "hm-button",
+            type: "button",
+            onclick: async () => {
+              window.__fixtureDialogResult = await confirmDialog({
+                title: "确认操作",
+                message: "用于验证键盘交互。"
+              });
+            }
+          },
+          "打开对话框"
+        );
+        const next = el(
+          "a",
+          {
+            class: "hm-button",
+            id: "fixture-next",
+            href: "fixtures.html?page=interactions&step=2"
+          },
+          "进入下一状态"
+        );
+        const spacer = el("div", {
+          style: "height:1400px"
+        });
+        shell.setMain(
+          el("section", { class: "hm-panel hm-form" }, [
+            el("h1", {}, "交互回归"),
+            trigger,
+            dialogTrigger,
+            spacer,
+            next
+          ])
+        );
+        window.__fixtureNavigationDispose = createNavigation({
+          onNavigate(url) {
+            document.body.dataset.fixtureStep =
+              new URL(url).searchParams.get("step") || "1";
+          }
+        });
+      }
+
+      try {
+        const fixtures = {
+          home: showHome,
+          forum: showForum,
+          topic: showTopic,
+          user: showUser,
+          messages: showMessages,
+          chat: showChat,
+          editor: showEditor,
+          tools: showTools,
+          interactions: showInteractions
+        };
+        (fixtures[fixtureName] || showHome)();
+        addFixtureSidebar();
+        shell.setTitle(`Fixture · ${fixtureName}`);
+        document.body.dataset.fixtureReady = "true";
+      } catch (error) {
+        document.body.dataset.fixtureReady = "error";
+        document.body.append(
+          el("pre", { id: "fixture-error" }, error.stack || error.message)
+        );
+        throw error;
+      }
+    </script>
+  </head>
+  <body></body>
+</html>

@@ -1,0 +1,14 @@
+{
+  "msgList": [
+    {
+      "id": 5,
+      "byuid": 9,
+      "byname": "对方",
+      "content": "<p>你好</p>",
+      "isread": 0
+    }
+  ],
+  "readState": "no",
+  "currPage": 1,
+  "maxPage": 2
+}

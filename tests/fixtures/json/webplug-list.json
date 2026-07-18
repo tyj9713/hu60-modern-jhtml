@@ -1,0 +1,12 @@
+{
+  "list": [
+    {
+      "id": 7,
+      "name": "示例插件",
+      "description": "增强页面导航",
+      "enabled": 1,
+      "order": 1,
+      "code": "console.log('fixture')"
+    }
+  ]
+}

@@ -1,0 +1,28 @@
+{
+  "newTopicList": [
+    {
+      "topic_id": 8,
+      "forum_id": 170,
+      "forum_name": "技术交流",
+      "title": "Vite 构建实践",
+      "reply_count": 3,
+      "read_count": 20,
+      "uinfo": {
+        "uid": 2,
+        "name": "旧人",
+        "avatar": "/avatar/u.jpg"
+      }
+    }
+  ],
+  "_myself": {
+    "newChats": [
+      {
+        "room": "公共聊天室",
+        "name": "胡图图",
+        "content": "你好"
+      }
+    ]
+  },
+  "currPage": 1,
+  "hasNextPage": true
+}

@@ -1,0 +1,9 @@
+{
+  "ip": "127.0.0.1",
+  "location": "本地",
+  "proxy": "none",
+  "header": {
+    "user-agent": "Fixture UA",
+    "accept-language": "zh-CN"
+  }
+}

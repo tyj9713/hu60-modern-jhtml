@@ -1,0 +1,28 @@
+{
+  "forum": {
+    "id": 170,
+    "name": "技术交流",
+    "description": "讨论开发与运维"
+  },
+  "childForumList": [
+    {
+      "id": 171,
+      "name": "前端",
+      "intro": "浏览器技术"
+    }
+  ],
+  "topicList": [
+    {
+      "topic_id": 9,
+      "title": "现代 CSS",
+      "reply_count": 5,
+      "read_count": 30,
+      "uinfo": {
+        "name": "工程虎"
+      }
+    }
+  ],
+  "currPage": 1,
+  "maxPage": 2,
+  "hasNextPage": true
+}

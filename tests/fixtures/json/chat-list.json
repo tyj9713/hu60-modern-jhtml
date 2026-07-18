@@ -1,0 +1,13 @@
+{
+  "roomList": [
+    {
+      "name": "公共聊天室",
+      "count": 12
+    },
+    {
+      "name": "技术交流",
+      "count": 3
+    }
+  ],
+  "showBot": 0
+}

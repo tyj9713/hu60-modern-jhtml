@@ -1,0 +1,13 @@
+{
+  "msgList": [
+    {
+      "id": 6,
+      "touid": 9,
+      "toname": "对方",
+      "content": "<p>收到</p>",
+      "isread": 1
+    }
+  ],
+  "currPage": 1,
+  "maxPage": 1
+}

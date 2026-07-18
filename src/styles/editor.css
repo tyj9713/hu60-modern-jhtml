@@ -1,0 +1,171 @@
+.hm-editor {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(280px, 0.88fr);
+  overflow: hidden;
+  background: var(--hm-surface);
+  border: 1px solid var(--hm-line-strong);
+  border-radius: var(--hm-radius-md);
+}
+
+.hm-editor-pane,
+.hm-editor-preview {
+  min-width: 0;
+}
+
+.hm-editor-pane {
+  border-right: 1px solid var(--hm-line);
+}
+
+.hm-editor-head,
+.hm-editor-toolbar {
+  min-height: 42px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 5px 8px;
+  background: var(--hm-surface-soft);
+  border-bottom: 1px solid var(--hm-line);
+}
+
+.hm-editor-head small {
+  color: var(--hm-text-faint);
+  font-size: 9px;
+}
+
+.hm-mode-switch,
+.hm-editor-actions,
+.hm-editor-tools {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+}
+
+.hm-mode-switch button,
+.hm-editor-toolbar button {
+  min-height: 30px;
+  padding: 0 8px;
+  color: var(--hm-text-soft);
+  background: transparent;
+  border: 0;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 10px;
+}
+
+.hm-mode-switch button[aria-pressed="true"],
+.hm-editor-toolbar button:hover {
+  color: var(--hm-brand-strong);
+  background: var(--hm-brand-soft);
+}
+
+.hm-draft-banner {
+  min-height: 42px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 7px 10px;
+  color: var(--hm-text-soft);
+  background: var(--hm-mint-soft);
+  border-bottom: 1px solid var(--hm-line);
+  font-size: 11px;
+}
+
+.hm-draft-banner > div {
+  display: flex;
+  gap: 5px;
+}
+
+.hm-draft-banner button {
+  min-height: 30px;
+  padding: 0 8px;
+  color: var(--hm-brand-strong);
+  background: var(--hm-surface);
+  border: 1px solid var(--hm-line);
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 10px;
+}
+
+.hm-upload-status {
+  display: grid;
+  gap: 3px;
+  padding-inline: 10px;
+  color: var(--hm-text-faint);
+  background: var(--hm-surface-soft);
+  font-size: 10px;
+}
+
+.hm-upload-status:not(:empty) {
+  padding-block: 7px;
+  border-top: 1px solid var(--hm-line);
+}
+
+.hm-upload-status .is-error {
+  color: var(--hm-danger);
+}
+
+.hm-upload-status .is-success {
+  color: var(--hm-mint);
+}
+
+.hm-editor textarea {
+  width: 100%;
+  min-height: 340px;
+  display: block;
+  resize: vertical;
+  padding: 15px;
+  color: var(--hm-text);
+  background: var(--hm-surface);
+  border: 0;
+  outline: 0;
+  font-family: "Cascadia Code", "JetBrains Mono", Consolas, monospace;
+  font-size: 13px;
+  line-height: 1.75;
+}
+
+.hm-editor-preview {
+  min-height: 340px;
+  overflow: auto;
+  padding: 16px;
+  color: var(--hm-text-soft);
+  font-size: 14px;
+  line-height: 1.8;
+}
+
+@media (max-width: 720px) {
+  .hm-editor {
+    grid-template-columns: 1fr;
+  }
+
+  .hm-editor-pane {
+    border-right: 0;
+  }
+
+  .hm-editor-head {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .hm-draft-banner {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .hm-editor-toolbar {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .hm-editor-actions,
+  .hm-editor-tools {
+    width: 100%;
+    overflow-x: auto;
+  }
+
+  .hm-editor-preview {
+    min-height: 220px;
+    border-top: 1px solid var(--hm-line);
+  }
+}

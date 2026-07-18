@@ -1,0 +1,15 @@
+{
+  "searchType": "topic",
+  "keyword": "路由",
+  "topicList": [
+    {
+      "topic_id": 3,
+      "title": "路由设计",
+      "uinfo": {
+        "name": "工程虎"
+      }
+    }
+  ],
+  "currPage": 1,
+  "maxPage": 1
+}

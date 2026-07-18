@@ -1,0 +1,381 @@
+{
+  "_avatar-f6-FYNKw.js": {
+    "file": "chunks/avatar-f6-FYNKw.js",
+    "name": "avatar",
+    "imports": [
+      "_dom-Dhq3QSJF.js"
+    ]
+  },
+  "_content-C2iR-miq.js": {
+    "file": "chunks/content-C2iR-miq.js",
+    "name": "content",
+    "imports": [
+      "_dom-Dhq3QSJF.js"
+    ]
+  },
+  "_dialog-CuohRcFc.js": {
+    "file": "chunks/dialog-CuohRcFc.js",
+    "name": "dialog",
+    "imports": [
+      "_dom-Dhq3QSJF.js"
+    ]
+  },
+  "_dom-Dhq3QSJF.js": {
+    "file": "chunks/dom-Dhq3QSJF.js",
+    "name": "dom"
+  },
+  "_forms-Dv92BbyG.js": {
+    "file": "chunks/forms-Dv92BbyG.js",
+    "name": "forms",
+    "imports": [
+      "_dom-Dhq3QSJF.js"
+    ]
+  },
+  "_html-form-CqrFi-b0.js": {
+    "file": "chunks/html-form-CqrFi-b0.js",
+    "name": "html-form"
+  },
+  "_json-COYDUIwt.js": {
+    "file": "chunks/json-COYDUIwt.js",
+    "name": "json"
+  },
+  "_pagination-Bc186T6L.js": {
+    "file": "chunks/pagination-Bc186T6L.js",
+    "name": "pagination",
+    "imports": [
+      "_dom-Dhq3QSJF.js"
+    ]
+  },
+  "_rolldown-runtime-Dqa2HsxW.js": {
+    "file": "chunks/rolldown-runtime-Dqa2HsxW.js",
+    "name": "rolldown-runtime"
+  },
+  "_urls-Bq3RnfMf.js": {
+    "file": "chunks/urls-Bq3RnfMf.js",
+    "name": "urls"
+  },
+  "node_modules/.pnpm/@astral-sh+ruff-wasm-web@0.15.22/node_modules/@astral-sh/ruff-wasm-web/ruff_wasm.js": {
+    "file": "chunks/ruff_wasm-Dzf1pIzP.js",
+    "name": "ruff_wasm",
+    "src": "node_modules/.pnpm/@astral-sh+ruff-wasm-web@0.15.22/node_modules/@astral-sh/ruff-wasm-web/ruff_wasm.js",
+    "isDynamicEntry": true
+  },
+  "node_modules/.pnpm/@prettier+plugin-php@0.25.0_prettier@3.9.5/node_modules/@prettier/plugin-php/standalone.js": {
+    "file": "chunks/standalone-CtXqWg3V.js",
+    "name": "standalone",
+    "src": "node_modules/.pnpm/@prettier+plugin-php@0.25.0_prettier@3.9.5/node_modules/@prettier/plugin-php/standalone.js",
+    "isDynamicEntry": true,
+    "imports": [
+      "_rolldown-runtime-Dqa2HsxW.js"
+    ]
+  },
+  "node_modules/.pnpm/prettier@3.9.5/node_modules/prettier/plugins/babel.mjs": {
+    "file": "chunks/babel-BvWku014.js",
+    "name": "babel",
+    "src": "node_modules/.pnpm/prettier@3.9.5/node_modules/prettier/plugins/babel.mjs",
+    "isDynamicEntry": true
+  },
+  "node_modules/.pnpm/prettier@3.9.5/node_modules/prettier/plugins/estree.mjs": {
+    "file": "chunks/estree-x9G7833h.js",
+    "name": "estree",
+    "src": "node_modules/.pnpm/prettier@3.9.5/node_modules/prettier/plugins/estree.mjs",
+    "isDynamicEntry": true
+  },
+  "node_modules/.pnpm/prettier@3.9.5/node_modules/prettier/plugins/html.mjs": {
+    "file": "chunks/html-CRqSsZD3.js",
+    "name": "html",
+    "src": "node_modules/.pnpm/prettier@3.9.5/node_modules/prettier/plugins/html.mjs",
+    "isDynamicEntry": true
+  },
+  "node_modules/.pnpm/prettier@3.9.5/node_modules/prettier/plugins/markdown.mjs": {
+    "file": "chunks/markdown-Dia7yVvt.js",
+    "name": "markdown",
+    "src": "node_modules/.pnpm/prettier@3.9.5/node_modules/prettier/plugins/markdown.mjs",
+    "isDynamicEntry": true
+  },
+  "node_modules/.pnpm/prettier@3.9.5/node_modules/prettier/plugins/postcss.mjs": {
+    "file": "chunks/postcss-CUc-kPc7.js",
+    "name": "postcss",
+    "src": "node_modules/.pnpm/prettier@3.9.5/node_modules/prettier/plugins/postcss.mjs",
+    "isDynamicEntry": true
+  },
+  "node_modules/.pnpm/prettier@3.9.5/node_modules/prettier/plugins/typescript.mjs": {
+    "file": "chunks/typescript-9PDS9Vhx.js",
+    "name": "typescript",
+    "src": "node_modules/.pnpm/prettier@3.9.5/node_modules/prettier/plugins/typescript.mjs",
+    "isDynamicEntry": true
+  },
+  "node_modules/.pnpm/prettier@3.9.5/node_modules/prettier/standalone.mjs": {
+    "file": "chunks/standalone-CkXaCNBo.js",
+    "name": "standalone",
+    "src": "node_modules/.pnpm/prettier@3.9.5/node_modules/prettier/standalone.mjs",
+    "isDynamicEntry": true
+  },
+  "node_modules/.pnpm/sh-syntax@0.6.0/node_modules/sh-syntax/lib/browser.js": {
+    "file": "chunks/browser-bJBXmvJL.js",
+    "name": "browser",
+    "src": "node_modules/.pnpm/sh-syntax@0.6.0/node_modules/sh-syntax/lib/browser.js",
+    "isDynamicEntry": true
+  },
+  "node_modules/.pnpm/sh-syntax@0.6.0/node_modules/sh-syntax/main.wasm?url": {
+    "file": "chunks/main-Cci6Lt_R.js",
+    "name": "main",
+    "src": "node_modules/.pnpm/sh-syntax@0.6.0/node_modules/sh-syntax/main.wasm?url",
+    "isDynamicEntry": true
+  },
+  "node_modules/.pnpm/sql-formatter@15.8.2/node_modules/sql-formatter/dist/esm/index.js": {
+    "file": "chunks/esm-Dlpde53s.js",
+    "name": "esm",
+    "src": "node_modules/.pnpm/sql-formatter@15.8.2/node_modules/sql-formatter/dist/esm/index.js",
+    "isDynamicEntry": true,
+    "imports": [
+      "_rolldown-runtime-Dqa2HsxW.js"
+    ]
+  },
+  "src/app.js": {
+    "file": "app.min.js",
+    "name": "app",
+    "src": "src/app.js",
+    "isEntry": true,
+    "imports": [
+      "_urls-Bq3RnfMf.js",
+      "_dom-Dhq3QSJF.js",
+      "_dialog-CuohRcFc.js",
+      "_avatar-f6-FYNKw.js"
+    ],
+    "dynamicImports": [
+      "src/pages/home.js",
+      "src/pages/forum.js",
+      "src/pages/topic.js",
+      "src/pages/search.js",
+      "src/pages/forms.js",
+      "src/pages/user.js",
+      "src/pages/messages.js",
+      "src/pages/chat.js",
+      "src/pages/webplug.js",
+      "src/pages/tools.js",
+      "src/editor/controller.js",
+      "src/formatters/registry.js",
+      "src/editor/upload.js"
+    ]
+  },
+  "src/editor/controller.js": {
+    "file": "chunks/controller-bUHvqdHZ.js",
+    "name": "controller",
+    "src": "src/editor/controller.js",
+    "isDynamicEntry": true,
+    "imports": [
+      "_dom-Dhq3QSJF.js",
+      "src/editor/upload.js"
+    ],
+    "dynamicImports": [
+      "src/formatters/registry.js"
+    ]
+  },
+  "src/editor/upload.js": {
+    "file": "chunks/upload-DM-z18-0.js",
+    "name": "upload",
+    "src": "src/editor/upload.js",
+    "isDynamicEntry": true
+  },
+  "src/formatters/php.js": {
+    "file": "chunks/php-0-9ejF_X.js",
+    "name": "php",
+    "src": "src/formatters/php.js",
+    "isDynamicEntry": true,
+    "imports": [
+      "_rolldown-runtime-Dqa2HsxW.js"
+    ],
+    "dynamicImports": [
+      "node_modules/.pnpm/prettier@3.9.5/node_modules/prettier/standalone.mjs",
+      "node_modules/.pnpm/@prettier+plugin-php@0.25.0_prettier@3.9.5/node_modules/@prettier/plugin-php/standalone.js"
+    ]
+  },
+  "src/formatters/prettier.js": {
+    "file": "chunks/prettier-DGv0CReA.js",
+    "name": "prettier",
+    "src": "src/formatters/prettier.js",
+    "isDynamicEntry": true,
+    "dynamicImports": [
+      "node_modules/.pnpm/prettier@3.9.5/node_modules/prettier/standalone.mjs",
+      "node_modules/.pnpm/prettier@3.9.5/node_modules/prettier/plugins/babel.mjs",
+      "node_modules/.pnpm/prettier@3.9.5/node_modules/prettier/plugins/estree.mjs",
+      "node_modules/.pnpm/prettier@3.9.5/node_modules/prettier/plugins/typescript.mjs",
+      "node_modules/.pnpm/prettier@3.9.5/node_modules/prettier/plugins/html.mjs",
+      "node_modules/.pnpm/prettier@3.9.5/node_modules/prettier/plugins/postcss.mjs",
+      "node_modules/.pnpm/prettier@3.9.5/node_modules/prettier/plugins/markdown.mjs"
+    ]
+  },
+  "src/formatters/python.js": {
+    "file": "chunks/python-BX7mwRb3.js",
+    "name": "python",
+    "src": "src/formatters/python.js",
+    "isDynamicEntry": true,
+    "dynamicImports": [
+      "node_modules/.pnpm/@astral-sh+ruff-wasm-web@0.15.22/node_modules/@astral-sh/ruff-wasm-web/ruff_wasm.js"
+    ]
+  },
+  "src/formatters/registry.js": {
+    "file": "chunks/registry-t3RgNTqX.js",
+    "name": "registry",
+    "src": "src/formatters/registry.js",
+    "isDynamicEntry": true,
+    "dynamicImports": [
+      "src/formatters/prettier.js",
+      "src/formatters/php.js",
+      "src/formatters/python.js",
+      "src/formatters/sql.js",
+      "src/formatters/shell.js"
+    ]
+  },
+  "src/formatters/shell.js": {
+    "file": "chunks/shell-DgOmVr64.js",
+    "name": "shell",
+    "src": "src/formatters/shell.js",
+    "isDynamicEntry": true,
+    "dynamicImports": [
+      "node_modules/.pnpm/sh-syntax@0.6.0/node_modules/sh-syntax/lib/browser.js",
+      "node_modules/.pnpm/sh-syntax@0.6.0/node_modules/sh-syntax/main.wasm?url"
+    ]
+  },
+  "src/formatters/sql.js": {
+    "file": "chunks/sql-CcOWj28J.js",
+    "name": "sql",
+    "src": "src/formatters/sql.js",
+    "isDynamicEntry": true,
+    "dynamicImports": [
+      "node_modules/.pnpm/sql-formatter@15.8.2/node_modules/sql-formatter/dist/esm/index.js"
+    ]
+  },
+  "src/pages/chat.js": {
+    "file": "chunks/chat-BFPaVXsP.js",
+    "name": "chat",
+    "src": "src/pages/chat.js",
+    "isDynamicEntry": true,
+    "imports": [
+      "_urls-Bq3RnfMf.js",
+      "_dom-Dhq3QSJF.js",
+      "_avatar-f6-FYNKw.js",
+      "_json-COYDUIwt.js",
+      "_content-C2iR-miq.js",
+      "_forms-Dv92BbyG.js",
+      "_pagination-Bc186T6L.js"
+    ]
+  },
+  "src/pages/forms.js": {
+    "file": "chunks/forms-BupczjfD.js",
+    "name": "forms",
+    "src": "src/pages/forms.js",
+    "isDynamicEntry": true,
+    "imports": [
+      "_urls-Bq3RnfMf.js",
+      "_dom-Dhq3QSJF.js",
+      "_forms-Dv92BbyG.js",
+      "_html-form-CqrFi-b0.js"
+    ]
+  },
+  "src/pages/forum.js": {
+    "file": "chunks/forum-ByHBWkVM.js",
+    "name": "forum",
+    "src": "src/pages/forum.js",
+    "isDynamicEntry": true,
+    "imports": [
+      "_urls-Bq3RnfMf.js",
+      "_dom-Dhq3QSJF.js",
+      "_avatar-f6-FYNKw.js",
+      "_json-COYDUIwt.js",
+      "_pagination-Bc186T6L.js"
+    ]
+  },
+  "src/pages/home.js": {
+    "file": "chunks/home-D-POjCEb.js",
+    "name": "home",
+    "src": "src/pages/home.js",
+    "isDynamicEntry": true,
+    "imports": [
+      "_urls-Bq3RnfMf.js",
+      "_dom-Dhq3QSJF.js",
+      "_avatar-f6-FYNKw.js",
+      "_json-COYDUIwt.js",
+      "_pagination-Bc186T6L.js"
+    ]
+  },
+  "src/pages/messages.js": {
+    "file": "chunks/messages-AZ7l2MEA.js",
+    "name": "messages",
+    "src": "src/pages/messages.js",
+    "isDynamicEntry": true,
+    "imports": [
+      "_urls-Bq3RnfMf.js",
+      "_dom-Dhq3QSJF.js",
+      "_dialog-CuohRcFc.js",
+      "_json-COYDUIwt.js",
+      "_forms-Dv92BbyG.js",
+      "_pagination-Bc186T6L.js"
+    ]
+  },
+  "src/pages/search.js": {
+    "file": "chunks/search-D2qH1wMd.js",
+    "name": "search",
+    "src": "src/pages/search.js",
+    "isDynamicEntry": true,
+    "imports": [
+      "_urls-Bq3RnfMf.js",
+      "_dom-Dhq3QSJF.js",
+      "_json-COYDUIwt.js",
+      "_pagination-Bc186T6L.js"
+    ]
+  },
+  "src/pages/tools.js": {
+    "file": "chunks/tools-C-x3B5cz.js",
+    "name": "tools",
+    "src": "src/pages/tools.js",
+    "isDynamicEntry": true,
+    "imports": [
+      "_urls-Bq3RnfMf.js",
+      "_dom-Dhq3QSJF.js",
+      "_forms-Dv92BbyG.js",
+      "_html-form-CqrFi-b0.js"
+    ]
+  },
+  "src/pages/topic.js": {
+    "file": "chunks/topic-DL6b1wue.js",
+    "name": "topic",
+    "src": "src/pages/topic.js",
+    "isDynamicEntry": true,
+    "imports": [
+      "_urls-Bq3RnfMf.js",
+      "_dom-Dhq3QSJF.js",
+      "_avatar-f6-FYNKw.js",
+      "_json-COYDUIwt.js",
+      "_content-C2iR-miq.js",
+      "_pagination-Bc186T6L.js"
+    ]
+  },
+  "src/pages/user.js": {
+    "file": "chunks/user-DRYrpYmi.js",
+    "name": "user",
+    "src": "src/pages/user.js",
+    "isDynamicEntry": true,
+    "imports": [
+      "_urls-Bq3RnfMf.js",
+      "_dom-Dhq3QSJF.js",
+      "_avatar-f6-FYNKw.js",
+      "_json-COYDUIwt.js"
+    ]
+  },
+  "src/pages/webplug.js": {
+    "file": "chunks/webplug-DvQchdax.js",
+    "name": "webplug",
+    "src": "src/pages/webplug.js",
+    "isDynamicEntry": true,
+    "imports": [
+      "_dom-Dhq3QSJF.js",
+      "_dialog-CuohRcFc.js"
+    ]
+  },
+  "style.css": {
+    "file": "theme.min.css",
+    "src": "style.css"
+  }
+}

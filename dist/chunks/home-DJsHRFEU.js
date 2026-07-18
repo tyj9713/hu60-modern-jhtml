@@ -71,6 +71,16 @@ function d(e, n, r = "") {
 	return t("section", { class: `hm-side-card ${r}`.trim() }, [t("h2", {}, e), t("div", { class: "hm-side-card-body" }, n)]);
 }
 function f(e) {
+	let t = document.createElement("template");
+	t.innerHTML = String(e || ""), t.content.querySelectorAll("script,style,object,embed,iframe,base,meta").forEach((e) => e.remove());
+	for (let e of t.content.querySelectorAll("*")) for (let t of [...e.attributes]) /^on/i.test(t.name) && e.removeAttribute(t.name);
+	return t.content;
+}
+function p(e) {
+	let n = t("p", {}, `${e.name || "用户"}：`);
+	return n.append(f(e.content)), n;
+}
+function m(e) {
 	return {
 		main: t("section", { class: "hm-panel" }, [
 			t("header", { class: "hm-page-head" }, [t("div", {}, [t("span", { class: "hm-kicker" }, "TECHNICAL COMMONS"), t("h1", {}, "最新讨论")]), t("div", { class: "hm-page-actions" }, [t("a", {
@@ -104,7 +114,7 @@ function f(e) {
 			e.latestChat ? d("聊天室最新", [t("a", {
 				class: "hm-chat-preview",
 				href: `addin.chat.${encodeURIComponent(e.latestChat.room || "")}.jhtml`
-			}, [n(e.latestChat, 34), t("div", {}, [t("strong", {}, e.latestChat.room || "聊天室"), t("p", {}, `${e.latestChat.name || "用户"}：${e.latestChat.content || ""}`)])])]) : null,
+			}, [n(e.latestChat, 34), t("div", {}, [t("strong", {}, e.latestChat.room || "聊天室"), p(e.latestChat)])])]) : null,
 			d("社区导航", t("div", { class: "hm-community-links" }, [
 				t("a", { href: "bbs.forum.0.jhtml" }, [t("span", {}, "浏览全部版块"), t("span", { "aria-hidden": "true" }, "›")]),
 				t("a", { href: "bbs.search.jhtml" }, [t("span", {}, "搜索全部内容"), t("span", { "aria-hidden": "true" }, "›")]),
@@ -117,9 +127,9 @@ function f(e) {
 		])
 	};
 }
-async function p({ route: e, client: t, shell: n }) {
-	let r = f(await l(t, e));
+async function h({ route: e, client: t, shell: n }) {
+	let r = m(await l(t, e));
 	n.setTitle("首页"), n.setMain(r.main), n.setSidebar(r.sidebar), r.user && n.setUser?.(r.user);
 }
 //#endregion
-export { p as mount, f as renderHome };
+export { h as mount, m as renderHome };

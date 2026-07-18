@@ -7,11 +7,11 @@
 把以下两行保存为站点的 JHTML 自定义内容：
 
 ```html
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/tyj9713/hu60-modern-jhtml@v1.0.2/dist/theme.min.css">
-<script type="module" src="https://cdn.jsdelivr.net/gh/tyj9713/hu60-modern-jhtml@v1.0.2/dist/app.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/tyj9713/hu60-modern-jhtml@v1.0.3/dist/theme.min.css">
+<script type="module" src="https://cdn.jsdelivr.net/gh/tyj9713/hu60-modern-jhtml@v1.0.3/dist/app.min.js"></script>
 ```
 
-发布地址固定到 Git 标签 `v1.0.2`，避免 CDN 上游更新导致已部署站点在未验证的情况下变化。回滚时清空这两行，或改回上一个已验证版本；普通 `.html` 页面始终保留为兼容入口。
+发布地址固定到 Git 标签 `v1.0.3`，避免 CDN 上游更新导致已部署站点在未验证的情况下变化。回滚时清空这两行，或改回上一个已验证版本；普通 `.html` 页面始终保留为兼容入口。
 
 ## 覆盖范围
 

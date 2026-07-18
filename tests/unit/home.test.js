@@ -153,4 +153,28 @@ describe("home adapter", () => {
     expect(node.sidebar.textContent).toContain("虎友网站");
     expect(node.sidebar.textContent).toContain("公共聊天室");
   });
+
+  it("renders formatted latest-chat content without executable scripts", () => {
+    const view = renderHome(
+      normalizeHome({
+        _myself: {
+          newChats: [
+            {
+              room: "公共聊天室",
+              uid: 12,
+              _u_name: "聊天用户",
+              content:
+                "第一行<br>第二行&nbsp;内容<script>window.bad=true</script>"
+            }
+          ]
+        }
+      })
+    );
+
+    const preview = view.sidebar.querySelector(".hm-chat-preview p");
+    expect(preview.textContent).toContain("第一行");
+    expect(preview.textContent).toContain("第二行");
+    expect(preview.textContent).not.toContain("<br>");
+    expect(preview.querySelector("script")).toBeNull();
+  });
 });

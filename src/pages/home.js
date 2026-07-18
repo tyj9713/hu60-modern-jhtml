@@ -36,6 +36,26 @@ function sideCard(title, children, className = "") {
   ]);
 }
 
+function safeInlineContent(html) {
+  const template = document.createElement("template");
+  template.innerHTML = String(html || "");
+  template.content
+    .querySelectorAll("script,style,object,embed,iframe,base,meta")
+    .forEach((node) => node.remove());
+  for (const node of template.content.querySelectorAll("*")) {
+    for (const attribute of [...node.attributes]) {
+      if (/^on/i.test(attribute.name)) node.removeAttribute(attribute.name);
+    }
+  }
+  return template.content;
+}
+
+function latestChatSummary(chat) {
+  const paragraph = el("p", {}, `${chat.name || "用户"}：`);
+  paragraph.append(safeInlineContent(chat.content));
+  return paragraph;
+}
+
 export function renderHome(model) {
   const main = el("section", { class: "hm-panel" }, [
     el("header", { class: "hm-page-head" }, [
@@ -123,13 +143,7 @@ export function renderHome(model) {
               renderAvatar(model.latestChat, 34),
               el("div", {}, [
                 el("strong", {}, model.latestChat.room || "聊天室"),
-                el(
-                  "p",
-                  {},
-                  `${model.latestChat.name || "用户"}：${
-                    model.latestChat.content || ""
-                  }`
-                )
+                latestChatSummary(model.latestChat)
               ])
             ]
           )
